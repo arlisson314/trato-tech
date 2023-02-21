@@ -4,6 +4,6 @@ import './index.css';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <div>Arlisson é muito lindo!</div>
+    <div>Arlisson é muito lindo</div>
   </React.StrictMode>
 );
