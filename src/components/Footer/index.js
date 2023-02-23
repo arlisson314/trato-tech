@@ -14,12 +14,12 @@ function Footer() {
   return (
     <footer className={styles.footer}>
       <div>
-      <FaFacebook {... iconeProps}/>
-      <FaTwitter {... iconeProps}/>
-      <FaInstagram {... iconeProps}/>
+        <FaFacebook {... iconeProps}/>
+        <FaTwitter {... iconeProps}/>
+        <FaInstagram {... iconeProps}/>
       </div>
       <span>
-        Desenvolvido por Arlisson.
+        © 2021 Trato Tech. Todos os direitos reservados.
       </span>
     </footer>
   );
