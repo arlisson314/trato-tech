@@ -11,6 +11,7 @@ import escritorioThumb from 'assets/categorias/thumbnail/escritorio.png';
 import escritorioHeader from 'assets/categorias/header/escritorio.png';
 import somThumb from 'assets/categorias/thumbnail/som.png';
 import somHeader from 'assets/categorias/header/som.png';
+import { useNavigate } from 'react-router-dom';
 
 const categorias = [{
   nome: 'Eletrônicos',
@@ -40,11 +41,12 @@ const categorias = [{
   nome: 'Som e imagem',
   thumbnail: somThumb,
   header: somHeader,
-  id: 'som-imagem',
+  id: 'som',
   descricao: 'Aqui você encontra os melhores produtos de som e imagem'
 }]
 
 function Home() {
+  const navigate = useNavigate();
   return (
     <div>
       <Header
@@ -53,6 +55,19 @@ function Home() {
         imagem={relogio}
         className={styles.header}
       />
+      <div className={styles.categorias}>
+        <div className={styles['categorias-title']}>
+          <h1>Categorias</h1>
+        </div>
+        <div className={styles['categorias-container']}>
+          {categorias.map((categoria, _index) => (
+            <div key={categoria.id} onClick={() => navigate(`/categoria/${categoria.id}`)}>
+              <img src={categoria.thumbnail} alt={categoria.nome} />
+              <h1>{categoria.nome}</h1>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
