@@ -22,7 +22,7 @@ function Home() {
           <h1>Categorias</h1>
         </div>
         <div className={styles['categorias-container']}>
-          {categorias.map(({id, nome, thumbnail}, _index) => (
+          {categorias.map(({id, nome, thumbnail}) => (
             <div key={id} onClick={() => navigate(`/categoria/${id}`)}>
               <img src={thumbnail} alt={nome} />
               <h1>{nome}</h1>
