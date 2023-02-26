@@ -11,37 +11,43 @@ import somHeader from 'assets/categorias/header/som.png';
 
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = [{
-  nome: 'Eletrônicos',
-  thumbnail: eletronicosThumb,
-  heade: eletronicosHeader,
-  id: 'eletronicos',
-  descricao: 'Aqui você encontra os melhores produtos de tecnologia'
-}, {
-  nome: 'Automotivos',
-  thumbnail: automotivoThumb,
-  header: automotivoHeader,
-  id: 'automotivos',
-  descricao: 'Aqui você encontra os melhores produtos de automotivos'
-  }, {
-  nome: 'Jogos',
-  thumbnail: jogosThumb,
-  header: jogosHeader,
-  id: 'jogos',
-  descricao: 'Aqui você encontra os melhores produtos de jogos'
-  }, {
-  nome: 'Escritório',
-  thumbnail: escritorioThumb,
-  header: escritorioHeader,
-  id: 'escritorio',
-  descricao: 'Aqui você encontra os melhores produtos de escritório'
-}, {
-  nome: 'Som e imagem',
-  thumbnail: somThumb,
-  header: somHeader,
-  id: 'som',
-  descricao: 'Aqui você encontra os melhores produtos de som e imagem'
-}];
+const initialState = [
+  {
+    nome: 'Eletrônicos',
+    thumbnail: eletronicosThumb,
+    heade: eletronicosHeader,
+    id: 'eletronicos',
+    descricao: 'Aqui você encontra os melhores produtos de tecnologia'
+  },
+  {
+    nome: 'Automotivos',
+    thumbnail: automotivoThumb,
+    header: automotivoHeader,
+    id: 'automotivos',
+    descricao: 'Aqui você encontra os melhores produtos de automotivos'
+  },
+  {
+    nome: 'Jogos',
+    thumbnail: jogosThumb,
+    header: jogosHeader,
+    id: 'jogos',
+    descricao: 'Aqui você encontra os melhores produtos de jogos'
+  },
+  {
+    nome: 'Escritório',
+    thumbnail: escritorioThumb,
+    header: escritorioHeader,
+    id: 'escritorio',
+    descricao: 'Aqui você encontra os melhores produtos de escritório'
+  },
+  {
+    nome: 'Som e imagem',
+    thumbnail: somThumb,
+    header: somHeader,
+    id: 'som',
+    descricao: 'Aqui você encontra os melhores produtos de som e imagem'
+  }
+];
 
 const categoriasSlice = createSlice({
   name: 'categorias',
