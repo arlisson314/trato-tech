@@ -1,11 +1,13 @@
 import Header from 'components/Header';
 import styles from './Home.module.scss';
 import relogio from 'assets/inicial.png';
-import categorias from 'database';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function Home() {
   const navigate = useNavigate();
+  const categorias = useSelector((state) => state.categorias);
+
   return (
     <div>
       <Header
@@ -14,6 +16,7 @@ function Home() {
         imagem={relogio}
         className={styles.header}
       />
+
       <div className={styles.categorias}>
         <div className={styles['categorias-title']}>
           <h1>Categorias</h1>
