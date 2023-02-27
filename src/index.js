@@ -1,9 +1,15 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
+import Router from './routes';
+import React from 'react';
 import './index.css';
+import store from './store';
+import { Provider } from 'react-redux';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <div>Arlisson é muito lindo</div>
+    <Provider store={store}>
+      <Router />
+    </Provider>
   </React.StrictMode>
 );
