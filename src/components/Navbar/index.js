@@ -6,7 +6,7 @@ import {
   RiShoppingCartFill
 } from 'react-icons/ri'
 import Busca from '../Busca';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 
 const iconesProps = {
@@ -15,12 +15,13 @@ const iconesProps = {
 }
 
 function Navbar() {
-  const {pathname} = useLocation();
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   return (
     <nav className={styles.nav}>
   
-      <Logo className={styles.logo}/>
+      <Logo className={styles.logo} onClick={() => navigate('/')}/>
   
       <div className={styles.links}>
         <div>
