@@ -6,7 +6,7 @@ import {
   RiShoppingCartFill
 } from 'react-icons/ri'
 import Busca from '../Busca';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 
 const iconesProps = {
@@ -15,11 +15,8 @@ const iconesProps = {
 }
 
 function Navbar() {
-<<<<<<< HEAD
-=======
   const { pathname } = useLocation();
 
->>>>>>> 5ae6210 (feat: Adiciona hook useLocation  ao componente NavBar)
   return (
     <nav className={styles.nav}>
   
@@ -30,11 +27,7 @@ function Navbar() {
           <Link
             to='/'
             className={classNames(styles.link, {
-<<<<<<< HEAD
-            [styles.selected]: window.location.pathname === '/'
-=======
             [styles.selected]: pathname === '/'
->>>>>>> 5ae6210 (feat: Adiciona hook useLocation  ao componente NavBar)
           })}>
             Página inicial
           </Link>

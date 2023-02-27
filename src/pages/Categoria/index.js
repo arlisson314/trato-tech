@@ -26,7 +26,6 @@ function Categoria() {
           <Item
             key={item.id}
             {...item}
-            // id={item.id}
           />
         ))};
       </div>
