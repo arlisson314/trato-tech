@@ -15,6 +15,11 @@ const iconesProps = {
 }
 
 function Navbar() {
+<<<<<<< HEAD
+=======
+  const { pathname } = useLocation();
+
+>>>>>>> 5ae6210 (feat: Adiciona hook useLocation  ao componente NavBar)
   return (
     <nav className={styles.nav}>
   
@@ -25,7 +30,11 @@ function Navbar() {
           <Link
             to='/'
             className={classNames(styles.link, {
+<<<<<<< HEAD
             [styles.selected]: window.location.pathname === '/'
+=======
+            [styles.selected]: pathname === '/'
+>>>>>>> 5ae6210 (feat: Adiciona hook useLocation  ao componente NavBar)
           })}>
             Página inicial
           </Link>
@@ -38,7 +47,7 @@ function Navbar() {
   
       <div className={styles.icones}>
         <a href='/carrinho'>
-          {window.location.pathname === '/carrinho'
+          { pathname === '/carrinho'
             ? <RiShoppingCartFill {... iconesProps}/>
             : <RiShoppingCart2Line {... iconesProps}/> 
           }
