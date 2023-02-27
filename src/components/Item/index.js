@@ -12,7 +12,7 @@ const iconeProps = {
 export default function Item({ titulo, foto, preco, descricao, favorito, id }) {
   const dispatch = useDispatch();
 
-  const favoriteHnadler = () => {
+  const favoriteHandler = () => {
     dispatch(mudarFavoritar(id))
   };
 
@@ -39,11 +39,11 @@ export default function Item({ titulo, foto, preco, descricao, favorito, id }) {
                   {...iconeProps}
                   color='#ff0000'
                   className={styles['item-acao']}
-                  onClick={favoriteHnadler}/>
+                  onClick={favoriteHandler}/>
               : <AiOutlineHeart
                   {...iconeProps}
                   className={styles['item-acao']}
-                  onClick={favoriteHnadler}/>
+                  onClick={favoriteHandler}/>
             }
             <FaCartPlus
               {...iconeProps}
