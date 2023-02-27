@@ -15,7 +15,7 @@ const iconesProps = {
 }
 
 function Navbar() {
-  const { pathname } = useLocation();
+  const {pathname} = useLocation();
 
   return (
     <nav className={styles.nav}>
@@ -39,12 +39,12 @@ function Navbar() {
       </div>
   
       <div className={styles.icones}>
-        <a href='/carrinho'>
+        <Link to='/carrinho'>
           { pathname === '/carrinho'
             ? <RiShoppingCartFill {... iconesProps}/>
             : <RiShoppingCart2Line {... iconesProps}/> 
           }
-        </a>
+        </Link>
       </div>
   
     </nav>
