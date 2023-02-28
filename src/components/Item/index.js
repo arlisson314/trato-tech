@@ -15,8 +15,6 @@ export default function Item({ titulo, foto, preco, descricao, favorito, id }) {
   const estaNoCarrinho = useSelector((state) => state
     .carrinho.some(product => product.id === id));
 
-  console.log(useSelector((state) => state.carrinho))
-
   const dispatch = useDispatch();
 
   const favoriteHandler = () => {
