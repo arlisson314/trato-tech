@@ -7,10 +7,12 @@ const carrinhoSlice = createSlice({
   initialState,
   reducers: {
       mudarCarrinho: (state, params) => {
-        const product = state.some(product => product.id === params.payload)
+        const product = state.some(product => product.id === params.payload);
+
         if (!product) {
           return [...state, {id: params.payload, quantidade: 1}]
-        } 
+        };
+
         return state.filter(item => item.id !== params.payload);
       }
     }
