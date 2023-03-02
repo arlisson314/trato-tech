@@ -29,6 +29,7 @@ function Carrinho() {
           <Item
             key={item.id}
             {...item}
+            carrinho
           />
         ))}
         <div className={styles.total}>
