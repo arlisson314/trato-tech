@@ -1,18 +1,31 @@
 import styles from './Item.module.scss';
-import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import classNames from 'classnames';
 import { FaCartPlus } from 'react-icons/fa';
 import { mudarFavoritar } from 'reducers/itens';
 import { useDispatch, useSelector } from 'react-redux';
-import { mudarCarrinho } from 'reducers/carrinho';
-import classNames from 'classnames';
-
+import { mudarCarrinho, mudarQuantidade } from 'reducers/carrinho';
+import {
+  AiOutlineHeart,
+  AiFillHeart,
+  AiFillMinusCircle,
+  AiFillPlusCircle,
+} from 'react-icons/ai';
 
 const iconeProps = {
   size: 24,
   color: '#041833',
 };
+const quantidadeProps = {
+  size: 32,
+  color: '#18758E',
+};
 
-export default function Item({ titulo, foto, preco, descricao, favorito, id, carrinho }) {
+
+export default function Item({
+  titulo, foto, preco,
+  descricao, favorito,
+  id, carrinho, quantidade }) {
+
   const estaNoCarrinho = useSelector((state) => state
     .carrinho.some(product => product.id === id));
 
@@ -57,12 +70,33 @@ export default function Item({ titulo, foto, preco, descricao, favorito, id, car
                   className={styles['item-acao']}
                   onClick={favoriteHandler}/>
             }
-            <FaCartPlus
-              {...iconeProps}
-              color={estaNoCarrinho ? '#1875E8' : iconeProps.color}
-              className={styles['item-acao']}
-              onClick={carrinhoHandler}
-            />
+            {carrinho
+              ? (
+                <div className={styles.quantidade}>
+                  Quantidade:
+                  <AiFillMinusCircle
+                    {... quantidadeProps}
+                    onClick={() => {
+                      if (quantidade > 0) {
+                        dispatch(mudarQuantidade({id, quantidade: -1}))}
+                      }  
+                    }/>
+
+                  <span>{String(quantidade||0).padStart(2, '0')}</span>
+
+                  <AiFillPlusCircle
+                    {... quantidadeProps}
+                    onClick={() => dispatch(mudarQuantidade({id, quantidade: 1}))}
+                  />
+                </div>
+              )
+              : (<FaCartPlus
+                {...iconeProps}
+                color={estaNoCarrinho ? '#1875E8' : iconeProps.color}
+                className={styles['item-acao']}
+                onClick={carrinhoHandler}
+              />)
+            }
           </div>
         </div>
 
