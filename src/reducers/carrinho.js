@@ -10,7 +10,7 @@ const carrinhoSlice = createSlice({
         const product = state.some(product => product.id === params.payload);
 
         if (!product) {
-          return [...state, {id: params.payload, quantidade: 1}]
+          return [...state, {id: params.payload, quantidade: 1}];
         };
 
         return state.filter(item => item.id !== params.payload);
@@ -22,12 +22,13 @@ const carrinhoSlice = createSlice({
         //   }
         //   return itemNoCarrinho;
         // })
-        const product = state.find(itemNoCarrinho => itemNoCarrinho.id === params.payload.id)
-        product.quantidade += params.payload.quantidade
-      }
-    } 
+        const product = state.find(itemNoCarrinho => itemNoCarrinho.id === params.payload.id);
+        product.quantidade += params.payload.quantidade;
+      },
+      resetarCarrinho: () => initialState,
+    }
 });
 
-export const { mudarCarrinho, mudarQuantidade } = carrinhoSlice.actions;
+export const { mudarCarrinho, mudarQuantidade, resetarCarrinho } = carrinhoSlice.actions;
 
 export default carrinhoSlice.reducer;
