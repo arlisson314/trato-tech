@@ -8,10 +8,16 @@ import Item from 'components/Item';
 function Categoria() {
   const { nomeCategoria } = useParams();
 
-  const {categoria, itens} = useSelector(state => ({
-    categoria: state.categorias.find(categoria => categoria.id === nomeCategoria),
-    itens: state.itens.filter(product => product.categoria === nomeCategoria),
-  }));
+  const {categoria, itens} = useSelector(state => {
+    const regexp = new RegExp(state.busca, 'i');
+    return {
+      categoria: state.categorias.find(categoria => categoria.id === nomeCategoria),
+      itens: state.itens.filter(product =>
+        product.categoria === nomeCategoria
+        && product.titulo.match(regexp)  
+      )
+    }
+  });
 
   return (
     <div>
