@@ -235,10 +235,13 @@ const itensSlice = createSlice({
     mudarFavoritar: (state, params) => {
       const item = state.find(item => item.id === params.payload);
       item.favorito = !item.favorito;
+    },
+    adicionarItem: (state, params) => {
+      return [...state, {...params.payload, id: uuid(), favorito: false}];
     }
   }
 });
 
-export const { mudarFavoritar } = itensSlice.actions;
+export const { mudarFavoritar, adicionarItem } = itensSlice.actions;
 
 export default itensSlice.reducer;
