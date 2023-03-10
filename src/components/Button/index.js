@@ -1,0 +1,16 @@
+import style from './Button.module.scss'
+
+
+function Button({children, type, onClick}) {
+  return (
+    <button
+      className={style.button}
+      type={type}
+      onClick={onClick}  
+    >
+      {children}
+    </button>
+  );
+}
+
+export default Button;
