@@ -1,31 +1,20 @@
-import styles from './Anuncie.module.scss'
-import Header from 'components/Header';
-import { useSelector, useDispatch } from 'react-redux';
-import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { adicionarItem } from 'reducers/itens';
+import { useSelector,  useDispatch } from 'react-redux';
+
+import Header from 'components/Header';
 import Button from 'components/Button';
+import styles from './Anuncie.module.scss'
+
 
 function Anuncie() {
+  const dispatch = useDispatch();
+  const { register, reset, handleSubmit } = useForm();
   const categorias = useSelector(state => state.categorias);
-  const dispatch = useDispatch()
-  const [formdata, setFormData] = useState({
-      titilo: '',
-      descricao: '',
-      foto: '',
-      categoria: '',
-      preco: 0
-    });
 
-  const formHandler = (event) => {
-    event.preventDefault()
-    dispatch(adicionarItem(formdata))
-    setFormData({
-      titilo: '',
-      descricao: '',
-      foto: '',
-      categoria: '',
-      preco: 0
-    })
+  const formHandler = (arg) => {
+    dispatch(adicionarItem(arg))
+    reset()
   }
 
   return (
@@ -36,33 +25,30 @@ function Anuncie() {
       />
       <form
         className={styles.formulario}
-        onSubmit={(event) => formHandler(event)}
+        onSubmit={handleSubmit(formHandler)}
       >
         <input
           type='text'
-          value={formdata.titilo}
+          {...register('nome')}
           alt='Nome do prodtuto'
           placeholder='Nome do prodtuto'
-          onChange={(event) => setFormData({...formdata, titilo: event.target.value})}
         />
+
         <input
           type='text'
-          value={formdata.descricao}
+          {...register('descricao')}
           alt='Descrição do prodtuto'
           placeholder='Descrição do prodtuto'
-          onChange={(event) => setFormData({...formdata, descricao: event.target.value})}
         />
+
         <input
           type='text'
-          value={formdata.foto}
+          {...register('imagem')}
           alt='URL da imagem do prodtuto'
           placeholder='URL da imagem do prodtuto'
-          onChange={(event) => setFormData({...formdata, foto: event.target.value})}
         />
-        <select
-          value={formdata.categoria}
-          onChange={(event) => setFormData({...formdata, categoria: event.target.value})}
-        >
+
+        <select {...register('categoria')}>
           <option value=''> Selicione a categoria</option>
           {categorias?.map(categoria => (
             <option key={categoria.id}>
@@ -70,12 +56,12 @@ function Anuncie() {
             </option>
           ))}
         </select>
+
         <input
           min={0}
           type='number'
-          value={formdata.preco}
+          {...register('preco')}
           placeholder='Preço do produto'
-          onChange={(event) => setFormData({...formdata, preco: event.target.value})}
         />
         <Button
           type='submit'
