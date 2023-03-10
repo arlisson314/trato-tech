@@ -6,19 +6,21 @@
 }
 
 .formulario {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  justify-content: center;
-  margin: 20px auto;
   flex: 1;
+  gap: 20px;
   width: 70%;
+  display: flex;
+  margin: 20px auto;
+  flex-direction: column;
+  justify-content: center;
   input, select {
     border: none;
+    font-size: 20px;
+    padding: 10px 20px;
     border-radius: 5px;
     outline: #1a95f0;
     transition: .2s ease-in-out;
-    padding: 10px 20px;
+    background-color: white;
     &:focus {
       outline: 2px solid #1a95f0;
     }
