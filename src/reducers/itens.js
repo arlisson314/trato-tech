@@ -236,8 +236,18 @@ const itensSlice = createSlice({
       const item = state.find(item => item.id === params.payload);
       item.favorito = !item.favorito;
     },
-    adicionarItem: (state, params) => {
-      return [...state, {...params.payload, id: uuid(), favorito: false}];
+    adicionarItem: (state, {payload: {nome, descricao, imagem, preco, categoria}}) => {
+      return [...state,
+        {
+          titulo: nome,
+          descricao,
+          foto: imagem,
+          favorito: false,
+          preco,
+          id: uuid(),
+          categoria
+        }
+      ];
     }
   }
 });
