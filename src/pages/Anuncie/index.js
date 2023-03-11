@@ -14,10 +14,10 @@ function Anuncie() {
   const { errors } = formState;
 
   const formHandler = (arg) => {
-    dispatch(adicionarItem(arg))
-    reset()
+    dispatch(adicionarItem(arg));
+    reset();
   }
-  console.log(errors);
+
   return (
     <div className={styles.container}>
       <Header
@@ -86,6 +86,6 @@ function Anuncie() {
       </form>
     </div>
   );
-}
+};
 
 export default Anuncie;
