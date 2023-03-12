@@ -24,7 +24,6 @@ function Navbar() {
       <Logo className={styles.logo} onClick={() => navigate('/')}/>
   
       <div className={styles.links}>
-        <div>
           <Link
             to='/'
             className={classNames(styles.link, {
@@ -32,7 +31,13 @@ function Navbar() {
           })}>
             Página inicial
           </Link>
-        </div>
+          <Link
+            to='/anuncie'
+            className={classNames(styles.link, {
+            [styles.selected]: pathname === '/anuncie'
+          })}>
+            Anuncie
+          </Link>
       </div>
 
       <div className={styles.busca}>
