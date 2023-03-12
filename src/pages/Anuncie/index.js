@@ -12,9 +12,10 @@ function Anuncie() {
   const categorias = useSelector(state => state.categorias);
   const { register, reset, handleSubmit, formState } = useForm();
   const { errors } = formState;
+  
 
-  const formHandler = (arg) => {
-    dispatch(adicionarItem(arg));
+  const formHandler = (data) => {
+    dispatch(adicionarItem(data));
     reset();
   }
 
@@ -32,10 +33,10 @@ function Anuncie() {
           type='text'
           alt='Nome do prodtuto'
           placeholder='Nome do prodtuto'
-          className={errors.nome ? styles['input-erro'] : ''}
-          {...register('nome', {required: 'O campo nome é obrigatório'})}
+          className={errors.titulo ? styles['input-erro'] : ''}
+          {...register('titulo', {required: 'O campo titulo é obrigatório'})}
         />
-        {errors.nome && <span className={styles['mensagem-erro']}>{errors.nome.message}</span>}
+        {errors.titulo && <span className={styles['mensagem-erro']}>{errors.titulo.message}</span>}
 
         <input
           type='text'
@@ -50,10 +51,10 @@ function Anuncie() {
           type='text'
           alt='URL da imagem do prodtuto'
           placeholder='URL da imagem do prodtuto'
-          {...register('imagem', {required: 'O campo imagem é obrigatório'})}
-          className={errors.imagem ? styles['input-erro'] : ''}
+          {...register('foto', {required: 'O campo imagem é obrigatório'})}
+          className={errors.foto ? styles['input-erro'] : ''}
         />
-        {errors.imagem && <span className={styles['mensagem-erro']}>{errors.imagem.message}</span>}
+        {errors.foto && <span className={styles['mensagem-erro']}>{errors.foto.message}</span>}
 
         <select
           {...register('categoria', {required: 'O campo categoria é obrigatório'})}
@@ -61,19 +62,18 @@ function Anuncie() {
         >
           <option value=''> Selicione a categoria</option>
           {categorias?.map(categoria => (
-            <option key={categoria.id}>
+            <option key={categoria.id} value={categoria.id}>
               {categoria.nome}
             </option>
           ))}
         </select>
-  
         {errors.categoria && <span className={styles['mensagem-erro']}>{errors.categoria.message}</span>}
 
         <input
           min={0}
           type='number'
           placeholder='Preço do produto'
-          {...register('preco', {required: 'O campo preço é obrigatório'})}
+          {...register('preco', {required: 'O campo preço é obrigatório', valueAsNumber: true})}
           className={errors.preco ? styles['input-erro'] : ''}
         />
         {errors.preco && <span className={styles['mensagem-erro']}>{errors.preco.message}</span>}
