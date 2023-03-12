@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
 import { adicionarItem } from 'reducers/itens';
 import { useSelector,  useDispatch } from 'react-redux';
 
@@ -9,9 +10,13 @@ import styles from './Anuncie.module.scss'
 
 function Anuncie() {
   const dispatch = useDispatch();
+  const { nomeCategoria = '' } = useParams();
   const categorias = useSelector(state => state.categorias);
-  const { register, reset, handleSubmit, formState } = useForm();
-  const { errors } = formState;
+  const { register, reset, handleSubmit, formState: { errors } } = useForm({
+    defaultValues: {
+      categoria: nomeCategoria
+    }
+  });
   
 
   const formHandler = (data) => {
@@ -58,9 +63,10 @@ function Anuncie() {
 
         <select
           {...register('categoria', {required: 'O campo categoria é obrigatório'})}
+          disabled={Boolean(nomeCategoria)}
           className={errors.categoria ? styles['input-erro'] : ''}
         >
-          <option value=''> Selicione a categoria</option>
+          <option value=''>Selicione a categoria</option>
           {categorias?.map(categoria => (
             <option key={categoria.id} value={categoria.id}>
               {categoria.nome}
