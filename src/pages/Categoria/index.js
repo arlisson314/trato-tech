@@ -33,7 +33,7 @@ function Categoria() {
             key={item.id}
             {...item}
           />
-        ))};
+        ))}
       </div>
     </div>
   );
