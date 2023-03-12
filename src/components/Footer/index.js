@@ -19,7 +19,7 @@ function Footer() {
         <FaInstagram {... iconeProps}/>
       </div>
       <span>
-        © 2021 Trato Tech. Todos os direitos reservados.
+        © 2023 Arlisson. Todos os direitos reservados.
       </span>
     </footer>
   );
