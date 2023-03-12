@@ -26,6 +26,13 @@
 
   &-imagem {
     margin: 0 auto;
+    height: 160px;
+    width: 335px;
+    img {
+      object-fit: contain;
+      height: 100%;
+      width: 100%;
+    }
   }
 
   &-info {
