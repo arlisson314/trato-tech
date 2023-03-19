@@ -1,15 +1,20 @@
-import styles from './Item.module.scss';
-import classNames from 'classnames';
+import { useState } from 'react';
 import { FaCartPlus } from 'react-icons/fa';
-import { mudarFavoritar } from 'reducers/itens';
+import { editarItem, mudarFavoritar } from 'reducers/itens';
 import { useDispatch, useSelector } from 'react-redux';
-import { mudarCarrinho, mudarQuantidade } from 'reducers/carrinho';
+import { mudarCarrinho, mudarQuantidade} from 'reducers/carrinho';
 import {
   AiOutlineHeart,
   AiFillHeart,
   AiFillMinusCircle,
   AiFillPlusCircle,
+  AiOutlineCheck,
+  AiFillEdit
 } from 'react-icons/ai';
+
+import classNames from 'classnames';
+import styles from './Item.module.scss';
+import Input from 'components/Input';
 
 const iconeProps = {
   size: 24,
@@ -26,10 +31,12 @@ export default function Item({
   descricao, favorito,
   id, carrinho, quantidade }) {
 
+  const [modoEdição, setModoEdição] = useState(false);
+  const [novoTitulo, setNovoTitulo] = useState(titulo);
+  const dispatch = useDispatch();
   const estaNoCarrinho = useSelector((state) => state
     .carrinho.some(product => product.id === id));
 
-  const dispatch = useDispatch();
 
   const favoriteHandler = () => {
     dispatch(mudarFavoritar(id))
@@ -38,6 +45,24 @@ export default function Item({
   const carrinhoHandler = () => {
     dispatch(mudarCarrinho(id))
   }
+
+  const componenteModoEdicao = <>
+    {modoEdição
+      ? <AiOutlineCheck
+          {...iconeProps}
+          className={styles['item-acao']}
+          onClick={() => {
+            dispatch(editarItem({id, item: {titulo: novoTitulo}}))
+            setModoEdição(false)
+          }}
+        />
+      : <AiFillEdit
+          {...iconeProps}
+          className={styles['item-acao']}
+          onClick={() => setModoEdição(true)}
+        />
+    }
+  </>
 
   return (
     <div className={classNames(styles.item,{ 
@@ -49,7 +74,14 @@ export default function Item({
 
       <div className={styles['item-descricao']}>
         <div className={styles['item-titulo']}>
-          <h2>{titulo}</h2>
+          {modoEdição
+            ? <Input
+                value={novoTitulo}
+                onChange={({target}) => setNovoTitulo(target.value)}
+              />
+
+            :  <h2>{titulo}</h2>
+          }
           <p>{descricao}</p>
         </div>
   
@@ -90,12 +122,17 @@ export default function Item({
                   />
                 </div>
               )
-              : (<FaCartPlus
-                {...iconeProps}
-                color={estaNoCarrinho ? '#1875E8' : iconeProps.color}
-                className={styles['item-acao']}
-                onClick={carrinhoHandler}
-              />)
+              : (
+                <>
+                  <FaCartPlus
+                    {...iconeProps}
+                    color={estaNoCarrinho ? '#1875E8' : iconeProps.color}
+                    className={styles['item-acao']}
+                    onClick={carrinhoHandler}
+                    />
+                  {componenteModoEdicao}
+                </>
+              )
             }
           </div>
         </div>
