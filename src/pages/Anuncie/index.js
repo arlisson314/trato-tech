@@ -6,6 +6,7 @@ import { useSelector,  useDispatch } from 'react-redux';
 import Header from 'components/Header';
 import Button from 'components/Button';
 import styles from './Anuncie.module.scss'
+import Input from 'components/Input';
 
 
 function Anuncie() {
@@ -34,7 +35,7 @@ function Anuncie() {
         className={styles.formulario}
         onSubmit={handleSubmit(formHandler)}
       >
-        <input
+        <Input
           type='text'
           alt='Nome do prodtuto'
           placeholder='Nome do prodtuto'
@@ -43,7 +44,7 @@ function Anuncie() {
         />
         {errors.titulo && <span className={styles['mensagem-erro']}>{errors.titulo.message}</span>}
 
-        <input
+        <Input
           type='text'
           alt='Descrição do prodtuto'
           placeholder='Descrição do prodtuto'
@@ -52,7 +53,7 @@ function Anuncie() {
         />
         {errors.descricao && <span className={styles['mensagem-erro']}>{errors.descricao.message}</span>}
 
-        <input
+        <Input
           type='text'
           alt='URL da imagem do prodtuto'
           placeholder='URL da imagem do prodtuto'
@@ -75,7 +76,7 @@ function Anuncie() {
         </select>
         {errors.categoria && <span className={styles['mensagem-erro']}>{errors.categoria.message}</span>}
 
-        <input
+        <Input
           min={0}
           type='number'
           placeholder='Preço do produto'
