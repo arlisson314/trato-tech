@@ -246,6 +246,7 @@ const itensSlice = createSlice({
     editarItem: (state, {payload}) => {
       const item = state.find(item => item.id === payload.id);
       item.titulo = payload.item.titulo;
+      item.descricao = payload.item.descricao;
     }
   }
 });
