@@ -32,7 +32,7 @@ export default function Item({
   id, carrinho, quantidade }) {
 
   const [modoEdição, setModoEdição] = useState(false);
-  const [novoTitulo, setNovoTitulo] = useState(titulo);
+  const [editedItem, setEditedItem] = useState({titulo, descricao});
   const dispatch = useDispatch();
   const estaNoCarrinho = useSelector((state) => state
     .carrinho.some(product => product.id === id));
@@ -52,7 +52,7 @@ export default function Item({
           {...iconeProps}
           className={styles['item-acao']}
           onClick={() => {
-            dispatch(editarItem({id, item: {titulo: novoTitulo}}))
+            dispatch(editarItem({id, item: editedItem}))
             setModoEdição(false)
           }}
         />
@@ -75,14 +75,21 @@ export default function Item({
       <div className={styles['item-descricao']}>
         <div className={styles['item-titulo']}>
           {modoEdição
-            ? <Input
-                value={novoTitulo}
-                onChange={({target}) => setNovoTitulo(target.value)}
-              />
-
-            :  <h2>{titulo}</h2>
+            ? <div className={styles['item-inputs-container']}>
+                <Input
+                  value={editedItem.titulo}
+                  onChange={({target}) => setEditedItem({...editedItem, titulo: target.value})}
+                />
+                <Input
+                  value={editedItem.descricao}
+                  onChange={({target}) => setEditedItem({...editedItem, descricao: target.value})}
+                />
+              </div>
+            : <>
+                <h2>{titulo}</h2>
+                <p>{descricao}</p>
+              </>
           }
-          <p>{descricao}</p>
         </div>
   
         <div className={styles['item-info']}>
