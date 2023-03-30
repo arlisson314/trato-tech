@@ -246,10 +246,14 @@ const itensSlice = createSlice({
     editarItem: (state, {payload}) => {
       const index = state.findIndex(item => item.id === payload.id);
       Object.assign(state[index], payload.item)
+    },
+    removerItem: (state, {payload}) => {
+      const index = state.findIndex(item => item.id === payload);
+      state.splice(index, 1);
     }
   }
 });
 
-export const { mudarFavoritar, adicionarItem, editarItem } = itensSlice.actions;
+export const { mudarFavoritar, adicionarItem, editarItem, removerItem } = itensSlice.actions;
 
 export default itensSlice.reducer;
